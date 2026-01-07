@@ -266,6 +266,26 @@ public static int longestEvenSum(Queue<Integer> q)
 
     return maxSum;
 }
+//stack reverse and queue reverse
+        public static void stackreverse(Stack<Integer> s)
+    {
+        Queue<Integer> q =new Queue<Integer>();
+        
+        while (!s.isEmpty()) q.insert(s.pop());    
+
+        while (!q.isEmpty()) s.push(q.remove());
+
+    }
+
+    public static void queuereverse(Queue<Integer> q)
+    {
+        Stack<Integer> s =new Stack<Integer>();
+        
+        while (!q.isEmpty()) s.push(q.remove());    
+
+        while (!s.isEmpty()) q.insert(s.pop());
+
+    }
 
 }
 
