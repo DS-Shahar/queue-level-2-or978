@@ -8,8 +8,6 @@
         root.getRight().setLeft(new BinNode<>(10));
         root.getRight().setRight(new BinNode<>(12));
 
-        // Define the functions directly inside main and use them
-
         // 1. Print even nodes
         System.out.println("Even nodes:");
         Runnable printEven = () -> printEven(root);
