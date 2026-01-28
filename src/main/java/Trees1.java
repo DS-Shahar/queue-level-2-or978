@@ -1,16 +1,16 @@
 public class Trees1 {
 
-    static class Node {
+    static class BinNode {
         int value;
-        Node left, right;
+        BinNode left, right;
 
-        Node(int value) {
+        BinNode(int value) {
             this.value = value;
         }
     }
 
     
-    public static void printEvenWithoutOddChild(Node root) {
+    public static void printEvenWithoutOddChild(BinNode root) {
         if (root == null) return;
 
         if (isEvenWithoutOddChild(root)) {
@@ -22,7 +22,7 @@ public class Trees1 {
     }
 
     
-    public static int countEvenWithoutOddChild(Node root) {
+    public static int countEvenWithoutOddChild(BinNode root) {
         if (root == null) return 0;
 
         int count = isEvenWithoutOddChild(root) ? 1 : 0;
@@ -31,7 +31,7 @@ public class Trees1 {
                 countEvenWithoutOddChild(root.right);
     }
 
-    public static boolean existsEvenWithoutOddChild(Node root) {
+    public static boolean existsEvenWithoutOddChild(BinNode root) {
         if (root == null) return false;
 
         if (isEvenWithoutOddChild(root)) return true;
@@ -41,7 +41,7 @@ public class Trees1 {
     }
 
     
-    public static boolean allEvenWithoutOddChild(Node root) {
+    public static boolean allEvenWithoutOddChild(BinNode root) {
         if (root == null) return true;
 
         if (!isEvenWithoutOddChild(root)) return false;
@@ -51,7 +51,7 @@ public class Trees1 {
     }
 
     //
-    private static boolean isEvenWithoutOddChild(Node node) {
+    private static boolean isEvenWithoutOddChild(BinNode node) {
         if (node.value % 2 != 0) return false;
 
         if (node.left != null && node.left.value % 2 != 0) return false;
@@ -63,13 +63,12 @@ public class Trees1 {
 
     public static void main(String[] args) {
 
-
-        Node root = new Node(8);
-        root.left = new Node(4);
-        root.right = new Node(6);
-        root.left.left = new Node(2);
-        root.right.left = new Node(10);
-        root.right.right = new Node(12);
+        BinNode root = new BinNode(8);
+        root.left = new BinNode(4);
+        root.right = new BinNode(6);
+        root.left.left = new BinNode(2);
+        root.right.left = new BinNode(10);
+        root.right.right = new BinNode(12);
 
         System.out.println("1. הדפסת הצמתים:");
         printEvenWithoutOddChild(root);
@@ -77,6 +76,6 @@ public class Trees1 {
 
         System.out.println(countEvenWithoutOddChild(root));
         System.out.println(existsEvenWithoutOddChild(root));
-        System.out.println( allEvenWithoutOddChild(root));
+        System.out.println(allEvenWithoutOddChild(root));
     }
 }
