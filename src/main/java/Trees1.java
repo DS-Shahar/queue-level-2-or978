@@ -1,65 +1,51 @@
-public class Trees1 {
 
-    static class BinNode {
-        int value;
-        BinNode left, right;
 
-        BinNode(int value) {
-            this.value = value;
-        }
-    }
-
-    
-    public static void printEvenWithoutOddChild(BinNode root) {
+    public static void printEven(BinNode root) {
         if (root == null) return;
 
-        if (isEvenWithoutOddChild(root)) {
+        if (isEven(root)) {
             System.out.print(root.value + " ");
         }
 
-        printEvenWithoutOddChild(root.left);
-        printEvenWithoutOddChild(root.right);
+        printEven(root.left);
+        printEven(root.right);
     }
 
-    
-    public static int countEvenWithoutOddChild(BinNode root) {
+    public static int countEven(BinNode root) {
         if (root == null) return 0;
 
-        int count = isEvenWithoutOddChild(root) ? 1 : 0;
-        return count +
-                countEvenWithoutOddChild(root.left) +
-                countEvenWithoutOddChild(root.right);
+        int count = isEven(root) ? 1 : 0;
+        return count + countEven(root.left) + countEven(root.right);
     }
 
-    public static boolean existsEvenWithoutOddChild(BinNode root) {
+   
+    public static boolean hasEven(BinNode root) {
         if (root == null) return false;
 
-        if (isEvenWithoutOddChild(root)) return true;
+        if (isEven(root)) return true;
 
-        return existsEvenWithoutOddChild(root.left) ||
-               existsEvenWithoutOddChild(root.right);
+        return hasEven(root.left) || hasEven(root.right);
     }
 
     
-    public static boolean allEvenWithoutOddChild(BinNode root) {
+    public static boolean allEven(BinNode root) {
         if (root == null) return true;
 
-        if (!isEvenWithoutOddChild(root)) return false;
+        if (!isEven(root)) return false;
 
-        return allEvenWithoutOddChild(root.left) &&
-               allEvenWithoutOddChild(root.right);
+        return allEven(root.left) && allEven(root.right);
     }
 
-    //
-    private static boolean isEvenWithoutOddChild(BinNode node) {
+    
+    private static boolean isEven(BinNode node) {
         if (node.value % 2 != 0) return false;
 
-        if (node.left != null && node.left.value % 2 != 0) return false;
-        if (node.right != null && node.right.value % 2 != 0) return false;
+        if ((node.left != null && node.left.value % 2 != 0) || (node.right != null && node.right.value % 2 != 0)) {
+            return false;
+        }
 
         return true;
     }
-
 
     public static void main(String[] args) {
 
@@ -70,12 +56,12 @@ public class Trees1 {
         root.right.left = new BinNode(10);
         root.right.right = new BinNode(12);
 
-        System.out.println("1. הדפסת הצמתים:");
-        printEvenWithoutOddChild(root);
+        System.out.println("1. Even nodes:");
+        printEven(root);
         System.out.println();
 
-        System.out.println(countEvenWithoutOddChild(root));
-        System.out.println(existsEvenWithoutOddChild(root));
-        System.out.println(allEvenWithoutOddChild(root));
+        System.out.println("2. Count of even nodes: " + countEven(root));
+        System.out.println("3. Is there at least one even node? " + hasEven(root));
+        System.out.println("4. Are all nodes even? " + allEven(root));
     }
 }
